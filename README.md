@@ -9,3 +9,5 @@ flexibility. A possible workaround is to have the user select the vertices.
 
 Basically, the computer vision part is to get the outline of the cube (6 points). 
 Once this is done, some math can be done to calculate the position of each facelet.
+
+Todo: Fix parallel case for findCorner.
