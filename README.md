@@ -7,7 +7,7 @@ Currently, it is only made to work with stickered/tiled cubes with black pieces,
 a white background. Algorithm will need a complete overhaul to allow for more 
 flexibility. A possible workaround is to have the user select the vertices.
 
-Basically, the computer vision part is to get the outline of the cube (6 points). 
-Once this is done, some math can be done to calculate the position of each facelet.
+First, it gets the outline of the cube (~6 points) to create a mask to isolate the 
+cube. Then, the colors are analyzed.
 
-Todo: Fix parallel case for findCorner.
+Todo: Adjust color ranges based on center color.
