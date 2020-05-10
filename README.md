@@ -10,4 +10,8 @@ flexibility. A possible workaround is to have the user select the vertices.
 First, it gets the outline of the cube (~6 points) to create a mask to isolate the 
 cube. Then, the colors are analyzed.
 
-Todo: Adjust color ranges based on center color.
+Todo:
+
+Adjust color ranges based on center color.
+
+Manually selected vertices.

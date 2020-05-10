@@ -22,10 +22,10 @@ outPath = os.path.join(imageDir, 'output.jpg')
 
 image = cv2.imread(inPath)
 
-#vid = cv2.VideoCapture(0)
+vid = cv2.VideoCapture(0)
 
 while True:
-    #_, image = vid.read()
+    _, image = vid.read()
     imContour = image.copy()
     imCopy = image.copy()
 
