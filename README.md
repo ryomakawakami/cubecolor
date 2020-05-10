@@ -12,6 +12,6 @@ cube. Then, the colors are analyzed.
 
 Todo:
 
-Adjust color ranges based on center color.
+Adjust color ranges based on center color. Make HSV range finder tool.
 
 Manually selected vertices.
