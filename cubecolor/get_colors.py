@@ -1,4 +1,5 @@
 import cv2
+import numpy as np
 
 colors = ['r', 'o', 'y', 'g', 'b', 'w']
 
@@ -18,7 +19,9 @@ def getColors(masked, image):
 
     kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (15, 15))
     contours = []
-    facelets = []
+    facelets = np.empty(shape = (27, 2), dtype=int)
+    faceletColor = {}
+    i = 0
     for color in colors:
         # "Open" each filtered image and get contours
         morph = cv2.morphologyEx(faceletContours[color], cv2.MORPH_OPEN, kernel)
@@ -35,15 +38,18 @@ def getColors(masked, image):
             
             # Find centroid
             M = cv2.moments(contour)
-            cx = int(M['m10'] / M['m00'])
-            cy = int(M['m01'] / M['m00'])
+            cx = (int) (M['m10'] / M['m00'])
+            cy = (int) (M['m01'] / M['m00'])
 
             # Add to be returned
-            facelets.append([cx, cy, color])
+            facelets[i, 0] = cx
+            facelets[i, 1] = cy
+            faceletColor[tuple(facelets[i, :])] = color
+            i += 1
 
-    cv2.drawContours(image, contours, -1, (0, 0, 255), 3)
+    #cv2.drawContours(image, contours, -1, (0, 0, 255), 3)
 
     for facelet in facelets:
-        cv2.putText(image, facelet[2], (facelet[0] - 13, facelet[1] + 10), cv2.FONT_HERSHEY_COMPLEX, 1, (0, 0, 0))
+        cv2.putText(image, faceletColor[tuple(facelet)], (facelet[0] - 13, facelet[1] + 10), cv2.FONT_HERSHEY_COMPLEX, 1, (0, 0, 0))
 
-    return facelets
+    return facelets, faceletColor

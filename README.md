@@ -8,7 +8,8 @@ a white background. Algorithm will need a complete overhaul to allow for more
 flexibility. A possible workaround is to have the user select the vertices.
 
 First, it gets the outline of the cube (~6 points) to create a mask to isolate the 
-cube. Then, the colors are analyzed.
+cube. Then, the colors are analyzed. Three "onion" layers are extracted from the 
+facelet vertices.
 
 Todo:
 
