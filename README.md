@@ -13,6 +13,10 @@ facelet vertices.
 
 Todo:
 
+Fix 9 vertices to minimize area tool. Maybe try to maximize solidity?
+
+Doesn't work for video input.
+
 Adjust color ranges based on center color. Make HSV range finder tool.
 
 Manually selected vertices.
