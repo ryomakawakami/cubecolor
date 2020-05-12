@@ -2,12 +2,18 @@ import cv2
 import numpy as np
 from scipy.cluster.vq import kmeans, vq
 import os
+import sys
 
 def empty(_):
     pass
 
+def dist(pt1, pt2):
+    dx = pt1[0] - pt2[0]
+    dy = pt1[1] - pt2[1]
+    return dx * dx + dy * dy
+
 imageDir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'images'))
-inPath = os.path.join(imageDir, 'r2.jpg')
+inPath = os.path.join(imageDir, 'r3.jpg')
 
 img = cv2.imread(inPath, -1)
 
@@ -89,30 +95,48 @@ while True:
         i += 1
     clusters = np.array(clusters)
 
-    # FIND QUADRILATERAL FIT FOR CLUSTERS
-    #np.median([cluster[1] for cluster in clusters[0]])
-    #clusters[0] = sorted(clusters[0], key=lambda a_entry: a_entry[1])
-    #print([cluster[1] for cluster in clusters[0]])
-    #while len(clusters[0]) > 9:
+    # Remove things with angle far from median
+    for i in range(len(clusters)):
+        cluster = clusters[i]
+        if len(cluster) > 9:
+            median = np.median([facelet[2] for facelet in cluster])
+            clusters[i] = [facelet for facelet in cluster if abs(facelet[2] - median) < 10]
 
-    # Figure out which 9 objects minimize area for each cluster.
-    # Not the best approach to do this while removing the one that minimizes the area when removed
-    # because it doesn't work for r1.
+    # Figure out removing which object minimizes total distance from center, until there are 9 objects
     for cluster in clusters:
         while len(cluster) > 9:
-            minArea = 0
+            """
+            minDistSum = 1000000000
+            minIndex = 0
+            for index in range(len(cluster)):
+                lessOneX = np.vstack(cluster[i][3][0] for i in range(len(cluster)) if i != index)
+                lessOneY = np.vstack(cluster[i][3][1] for i in range(len(cluster)) if i != index)
+                avg = (np.sum(lessOneX) / (len(cluster) - 1), np.sum(lessOneY) / (len(cluster) - 1))
+
+                sum = 0
+                for i in range(len(cluster) - 1):
+                    sum += dist((lessOneX[i], lessOneY[i]), avg)
+
+                if sum < minDistSum:
+                    minDistSum = sum
+                    minIndex = index
+            del(cluster[minIndex])
+            """
+
+            maxSolidity = 0
             minIndex = 0
             for index in range(len(cluster)):
                 c = np.vstack(cluster[i][0] for i in range(len(cluster)) if i != index)
+
+                area = cv2.contourArea(c)
                 hull = cv2.convexHull(c)
-                #epsilon = 0.01 * cv2.arcLength(hull, True)
-                #approx = cv2.approxPolyDP(hull, epsilon, True)
-                area = cv2.contourArea(hull)
-                if area < minArea:
-                    minArea = area
+                hull_area = cv2.contourArea(hull)
+                solidity = float(area)/hull_area
+
+                if area < maxSolidity:
+                    maxSolidity = solidity
                     minIndex = index
             del(cluster[minIndex])
-
     # Display
     i = 0
     for cluster in clusters:

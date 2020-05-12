@@ -13,9 +13,11 @@ facelet vertices.
 
 Todo:
 
-Fix 9 vertices to minimize area tool. Maybe try to maximize solidity?
+Maybe approach differently. Find hexagon using the maximize solidity method?
 
-Doesn't work for video input.
+Doesn't work for video input and for empty input. Add a bit of checking.
+
+Fix 0 vs 180 degree clustering for sideways cube (low priority).
 
 Adjust color ranges based on center color. Make HSV range finder tool.
 
