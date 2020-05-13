@@ -13,6 +13,10 @@ facelet vertices.
 
 Todo:
 
+Get rings to determine positions. Piece closest to CM of each face is center piece. 
+Closest corner piece might be determined by facelets closest to CM of all for reasonable 
+viewing angles...
+
 Maybe approach differently. Find hexagon using the maximize solidity method?
 
 Doesn't work for video input and for empty input. Add a bit of checking.
