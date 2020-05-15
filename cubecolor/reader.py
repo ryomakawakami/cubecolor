@@ -13,7 +13,7 @@ from save_colors import saveColors
 from display_cube import displayCube
 
 imageDir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'images'))
-inPath = os.path.join(imageDir, 'r1.jpg')
+inPath = os.path.join(imageDir, 's1.jpg')
 
 image = cv2.imread(inPath, -1)
 
@@ -120,7 +120,7 @@ for cluster in clusters:
     for facelet in cluster:
         color = (0, 0, 0)
         cx, cy = facelet[3]
-        #cv2.putText(imCopy, facelet[4], (cx - 13, cy + 10), cv2.FONT_HERSHEY_COMPLEX, 0.8, color)
+        cv2.putText(imCopy, facelet[4], (cx - 13, cy + 10), cv2.FONT_HERSHEY_COMPLEX, 0.8, color)
 
 cv2.imshow('image', imCopy)
 

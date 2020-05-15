@@ -26,6 +26,8 @@ OGRB   1234
 
 Todo:
 
+Add 2 pic functionality.
+
 Maybe approach differently. Find hexagon using the maximize solidity method?
 
 Doesn't work for video input and for empty input. Add a bit of checking.
