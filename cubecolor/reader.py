@@ -11,7 +11,7 @@ from identify_color import identifyColor
 from perp_bisector import clusterWithBisector
 
 imageDir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'images'))
-inPath = os.path.join(imageDir, 'r1.jpg')
+inPath = os.path.join(imageDir, 'r2.jpg')
 
 image = cv2.imread(inPath, -1)
 
