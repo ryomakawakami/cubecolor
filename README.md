@@ -15,6 +15,15 @@ each center piece is drawn. Each facelet can be uniquely positioned by the dista
 from each bisector (since each bisector clusters each face into 3 sets). The colors 
 of the centers are used to correctly map the facelets to the data representation.
 
+The cube is represented as a 6x3x3 array. White top for green, red, blue, and orange. 
+Blue top for white and green top for yellow.
+
+```
+ W      0
+OGRB   1234
+ Y      5
+```
+
 Todo:
 
 Maybe approach differently. Find hexagon using the maximize solidity method?

@@ -9,6 +9,7 @@ from cluster_facelets import clusterFacelets
 from filter_clusters import filterClusters
 from identify_color import identifyColor
 from perp_bisector import clusterWithBisector
+from save_colors import saveColors
 
 imageDir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'images'))
 inPath = os.path.join(imageDir, 'r1.jpg')
@@ -16,6 +17,8 @@ inPath = os.path.join(imageDir, 'r1.jpg')
 image = cv2.imread(inPath, -1)
 
 #vid = cv2.VideoCapture(0)
+
+cube = [[[None for i in range(3)] for j in range(3)] for k in range(6)]
 
 while True:
     #_, image = vid.read()
@@ -91,20 +94,30 @@ while True:
         clusters = [clusters[i] for i in [2, 0, 1]]
 
     # For AB_C, clusters on the C face from A and B face perp bisector
-    clusterXY_X = clusterWithBisector(centers[0][3], centers[1][3], clusters[0])
-    clusterXY_Y = clusterWithBisector(centers[0][3], centers[1][3], clusters[1])
-    clusterXZ_X = clusterWithBisector(centers[0][3], centers[2][3], clusters[0])
-    clusterXZ_Z = clusterWithBisector(centers[0][3], centers[2][3], clusters[2])
-    clusterYZ_Y = clusterWithBisector(centers[1][3], centers[2][3], clusters[1])
-    clusterYZ_Z = clusterWithBisector(centers[1][3], centers[2][3], clusters[2])
+    # In order: XY_X XZ_X XY_Y YZ_Y XZ_Z YZ_Z
+    facePositions = [
+        clusterWithBisector(centers[0][3], centers[1][3], clusters[0]),
+        clusterWithBisector(centers[0][3], centers[2][3], clusters[0]),
+        clusterWithBisector(centers[0][3], centers[1][3], clusters[1]),
+        clusterWithBisector(centers[1][3], centers[2][3], clusters[1]),
+        clusterWithBisector(centers[0][3], centers[2][3], clusters[2]),
+        clusterWithBisector(centers[1][3], centers[2][3], clusters[2])
+    ]
 
-    i = 0
-    for facelet in clusters[0]:
-        x = clusterXY_X[i] * 127
-        y = clusterXZ_X[i] * 127
-        cx, cy = facelet[3]
-        cv2.putText(imCopy, str((x, y)), (cx - 13, cy + 10), cv2.FONT_HERSHEY_COMPLEX, 0.3, (255, 255, 255))
-        i += 1
+    #i = 0
+    #for facelet in clusters[1]:
+    #    color = (127 * facePositions[0][i], 127 * facePositions[1][i], 0)
+    #    cx, cy = facelet[3]
+    #    text = str(facePositions[2][i]) + " " + str(facePositions[3][i])
+    #    cv2.putText(imCopy, text, (cx, cy), cv2.FONT_HERSHEY_COMPLEX, 0.3, color)
+    #    i += 1
+
+    # Save colors in cube
+    orientation = centers[0][4] + centers[1][4]
+    saveColors(cube, facePositions, clusters, orientation)
+    print(cube[0])
+    print(cube[3])
+    print(cube[2])
 
     # Display
     for cluster in clusters:

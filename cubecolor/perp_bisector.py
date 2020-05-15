@@ -4,15 +4,15 @@ def getBisector(p0, p1):
     xm = (p0[0] + p1[0]) / 2.0
     ym = (p0[1] + p1[1]) / 2.0
 
-    # Vertical line check
+    # Horizontal normal line check
     if p1[0] - p0[0] == 0:
-        return (xm, ym), (xm, ym + 1)
+        return (xm, ym), (0, ym)
 
     slope = (p1[1] - p0[1]) / (p1[0] - p0[0])
 
-    # Horizontal line check
+    # Vertical normal line check
     if slope == 0:
-        return (xm, ym), (0, ym)
+        return (xm, ym), (xm, ym + 1)
 
     x1 = 0
     y1 = xm / slope + ym
