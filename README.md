@@ -8,14 +8,14 @@ a white background. Algorithm will need a complete overhaul to allow for more
 flexibility. A possible workaround is to have the user select the vertices.
 
 First, it gets the outline of the cube (~6 points) to create a mask to isolate the 
-cube. Then, the colors are analyzed. Three "onion" layers are extracted from the 
-facelet vertices.
+cube. Then, the colors are analyzed.
+
+In order to determine what each facelet seen is, the perpendicular bisector between 
+each center piece is drawn. Each facelet can be uniquely positioned by the distance 
+from each bisector (since each bisector clusters each face into 3 sets). The colors 
+of the centers are used to correctly map the facelets to the data representation.
 
 Todo:
-
-Get rings to determine positions. Piece closest to CM of each face is center piece. 
-Closest corner piece might be determined by facelets closest to CM of all for reasonable 
-viewing angles...
 
 Maybe approach differently. Find hexagon using the maximize solidity method?
 
