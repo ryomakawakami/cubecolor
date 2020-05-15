@@ -10,13 +10,14 @@ from filter_clusters import filterClusters
 from identify_color import identifyColor
 from perp_bisector import clusterWithBisector
 from save_colors import saveColors
+from display_cube import displayCube
 
 imageDir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'images'))
 inPath = os.path.join(imageDir, 'r1.jpg')
 
 image = cv2.imread(inPath, -1)
 
-cube = [[[None for i in range(3)] for j in range(3)] for k in range(6)]
+cube = [[['x' for i in range(3)] for j in range(3)] for k in range(6)]
 
 imCopy = image.copy()
 
@@ -111,9 +112,8 @@ facePositions = [
 # Save colors in cube
 orientation = centers[0][4] + centers[1][4]
 saveColors(cube, facePositions, clusters, orientation)
-print(cube[0])
-print(cube[3])
-print(cube[2])
+
+displayCube(cube)
 
 # Display
 for cluster in clusters:
