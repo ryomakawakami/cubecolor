@@ -91,8 +91,9 @@ while True:
         centers = [centers[i] for i in [2, 0, 1]]
         clusters = [clusters[i] for i in [2, 0, 1]]
 
-    # Clusters on the U face from U and R face perp bisector
+    # For AB_C, clusters on the C face from A and B face perp bisector
     clusterUR_U = clusterWithBisector(centers[0][3], centers[1][3], clusters[0])
+    clusterUR_R = clusterWithBisector(centers[0][3], centers[1][3], clusters[1])
 
     i = 0
     for facelet in clusters[0]:
