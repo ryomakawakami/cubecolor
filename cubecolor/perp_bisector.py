@@ -1,10 +1,18 @@
 import numpy as np
 
 def getBisector(p0, p1):
-    slope = (p1[1] - p0[1]) / (p1[0] - p0[0])
-
     xm = (p0[0] + p1[0]) / 2.0
     ym = (p0[1] + p1[1]) / 2.0
+
+    # Vertical line check
+    if p1[0] - p0[0] == 0:
+        return (xm, ym), (xm, ym + 1)
+
+    slope = (p1[1] - p0[1]) / (p1[0] - p0[0])
+
+    # Horizontal line check
+    if slope == 0:
+        return (xm, ym), (0, ym)
 
     x1 = 0
     y1 = xm / slope + ym
@@ -26,7 +34,7 @@ def clusterWithBisector(c0, c1, face):
         i += 1
 
     # Cluster by distance
-    arr = np.argsort(np.argsort(arr))
+    arr = np.argsort(np.argsort(arr))   # This gives the index that each element "goes to"
     cluster_indices = [int(x / 3) for x in arr]
 
     return cluster_indices

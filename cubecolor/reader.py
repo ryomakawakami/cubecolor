@@ -11,7 +11,7 @@ from identify_color import identifyColor
 from perp_bisector import clusterWithBisector
 
 imageDir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'images'))
-inPath = os.path.join(imageDir, 'r2.jpg')
+inPath = os.path.join(imageDir, 'r1.jpg')
 
 image = cv2.imread(inPath, -1)
 
@@ -71,40 +71,39 @@ while True:
                 c = facelet
         centers.append(c)
 
-    # Identify each face. Top is U, left is F, right is R (in standard view)
+    # Identify each face. White/yellow is x, and y and z are cw from there
     hull = ConvexHull([center[3] for center in centers])
     centers = [centers[i] for i in hull.vertices]
     clusters = [clusters[i] for i in hull.vertices]
     i = 0
-    topIndex = 0
-    topY = 1000000
+    whiteYellowIndex = 0
     for center in centers:
-        if center[3][1] < topY:
-            topIndex = i
-            topY = center[3][1]
+        if center[4] == 'w' or center[4] == 'y':
+            whiteYellowIndex = i
+            break
         i += 1
-    # Roll array so that first is U, second is R, third is F
-    if topIndex == 1:
+    # Roll array so that first is x, second is y, third is z
+    if whiteYellowIndex == 1:
         centers = [centers[i] for i in [1, 2, 0]]
         clusters = [clusters[i] for i in [1, 2, 0]]
-    if topIndex == 2:
+    if whiteYellowIndex == 2:
         centers = [centers[i] for i in [2, 0, 1]]
         clusters = [clusters[i] for i in [2, 0, 1]]
 
     # For AB_C, clusters on the C face from A and B face perp bisector
-    clusterUR_U = clusterWithBisector(centers[0][3], centers[1][3], clusters[0])
-    clusterUR_R = clusterWithBisector(centers[0][3], centers[1][3], clusters[1])
+    clusterXY_X = clusterWithBisector(centers[0][3], centers[1][3], clusters[0])
+    clusterXY_Y = clusterWithBisector(centers[0][3], centers[1][3], clusters[1])
+    clusterXZ_X = clusterWithBisector(centers[0][3], centers[2][3], clusters[0])
+    clusterXZ_Z = clusterWithBisector(centers[0][3], centers[2][3], clusters[2])
+    clusterYZ_Y = clusterWithBisector(centers[1][3], centers[2][3], clusters[1])
+    clusterYZ_Z = clusterWithBisector(centers[1][3], centers[2][3], clusters[2])
 
     i = 0
     for facelet in clusters[0]:
-        color = ()
-        if clusterUR_U[i] == 0:
-            color = (255, 0, 0)
-        elif clusterUR_U[i] == 1:
-            color = (0, 255, 0)
-        else:
-            color = (0, 0, 255)
-        cv2.circle(imCopy, facelet[3], 2, color, 5)
+        x = clusterXY_X[i] * 127
+        y = clusterXZ_X[i] * 127
+        cx, cy = facelet[3]
+        cv2.putText(imCopy, str((x, y)), (cx - 13, cy + 10), cv2.FONT_HERSHEY_COMPLEX, 0.3, (255, 255, 255))
         i += 1
 
     # Display
@@ -112,7 +111,7 @@ while True:
         for facelet in cluster:
             color = (0, 0, 0)
             cx, cy = facelet[3]
-            cv2.putText(imCopy, facelet[4], (cx - 13, cy + 10), cv2.FONT_HERSHEY_COMPLEX, 0.8, color)
+            #cv2.putText(imCopy, facelet[4], (cx - 13, cy + 10), cv2.FONT_HERSHEY_COMPLEX, 0.8, color)
 
     cv2.imshow('image', imCopy)
 
