@@ -26,7 +26,7 @@ OGRB   1234
 
 Todo:
 
-Add 2 pic functionality.
+Fix for loop counters. Use enumerate().
 
 Maybe approach differently. Find hexagon using the maximize solidity method?
 
