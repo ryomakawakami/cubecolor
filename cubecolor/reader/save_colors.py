@@ -6,7 +6,10 @@ def saveColors(cube, positions, clusters, orientation):
         for facelet in clusters[0]:
             x = 2 - positions[1][i]
             y = 2 - positions[0][i]
-            cube[0][x][y] = facelet[4]
+            if cube[0][x][y] == None:
+                cube[0][x][y] = [facelet[4]]
+            else:
+                cube[0][x][y].append(facelet[4])
             i += 1
 
         # Red
@@ -14,7 +17,10 @@ def saveColors(cube, positions, clusters, orientation):
         for facelet in clusters[1]:
             x = positions[2][i]
             y = positions[3][i]
-            cube[3][x][y] = facelet[4]
+            if cube[3][x][y] == None:
+                cube[3][x][y] = [facelet[4]]
+            else:
+                cube[3][x][y].append(facelet[4])
             i += 1
 
         # Green
@@ -22,7 +28,10 @@ def saveColors(cube, positions, clusters, orientation):
         for facelet in clusters[2]:
             x = positions[4][i]
             y = 2 - positions[5][i]
-            cube[2][x][y] = facelet[4]
+            if cube[2][x][y] == None:
+                cube[2][x][y] = [facelet[4]]
+            else:
+                cube[2][x][y].append(facelet[4])
             i += 1
 
 ##########################
@@ -34,7 +43,10 @@ def saveColors(cube, positions, clusters, orientation):
         for facelet in clusters[0]:
             x = positions[0][i]
             y = 2 - positions[1][i]
-            cube[0][x][y] = facelet[4]
+            if cube[0][x][y] == None:
+                cube[0][x][y] = [facelet[4]]
+            else:
+                cube[0][x][y].append(facelet[4])
             i += 1
 
         # Blue
@@ -42,7 +54,10 @@ def saveColors(cube, positions, clusters, orientation):
         for facelet in clusters[1]:
             x = positions[2][i]
             y = positions[3][i]
-            cube[4][x][y] = facelet[4]
+            if cube[4][x][y] == None:
+                cube[4][x][y] = [facelet[4]]
+            else:
+                cube[4][x][y].append(facelet[4])
             i += 1
 
         # Red
@@ -50,7 +65,10 @@ def saveColors(cube, positions, clusters, orientation):
         for facelet in clusters[2]:
             x = positions[4][i]
             y = 2 - positions[5][i]
-            cube[3][x][y] = facelet[4]
+            if cube[3][x][y] == None:
+                cube[3][x][y] = [facelet[4]]
+            else:
+                cube[3][x][y].append(facelet[4])
             i += 1
 
 ##########################
@@ -62,7 +80,10 @@ def saveColors(cube, positions, clusters, orientation):
         for facelet in clusters[0]:
             x = positions[1][i]
             y = positions[0][i]
-            cube[0][x][y] = facelet[4]
+            if cube[0][x][y] == None:
+                cube[0][x][y] = [facelet[4]]
+            else:
+                cube[0][x][y].append(facelet[4])
             i += 1
 
         # Orange
@@ -70,7 +91,10 @@ def saveColors(cube, positions, clusters, orientation):
         for facelet in clusters[1]:
             x = positions[2][i]
             y = positions[3][i]
-            cube[1][x][y] = facelet[4]
+            if cube[1][x][y] == None:
+                cube[1][x][y] = [facelet[4]]
+            else:
+                cube[1][x][y].append(facelet[4])
             i += 1
 
         # Blue
@@ -78,7 +102,10 @@ def saveColors(cube, positions, clusters, orientation):
         for facelet in clusters[2]:
             x = positions[4][i]
             y = 2 - positions[5][i]
-            cube[4][x][y] = facelet[4]
+            if cube[4][x][y] == None:
+                cube[4][x][y] = [facelet[4]]
+            else:
+                cube[4][x][y].append(facelet[4])
             i += 1
 
 ##########################
@@ -90,7 +117,10 @@ def saveColors(cube, positions, clusters, orientation):
         for facelet in clusters[0]:
             x = 2 - positions[0][i]
             y = positions[1][i]
-            cube[0][x][y] = facelet[4]
+            if cube[0][x][y] == None:
+                cube[0][x][y] = [facelet[4]]
+            else:
+                cube[0][x][y].append(facelet[4])
             i += 1
 
         # Green
@@ -98,7 +128,10 @@ def saveColors(cube, positions, clusters, orientation):
         for facelet in clusters[1]:
             x = positions[2][i]
             y = positions[3][i]
-            cube[2][x][y] = facelet[4]
+            if cube[2][x][y] == None:
+                cube[2][x][y] = [facelet[4]]
+            else:
+                cube[2][x][y].append(facelet[4])
             i += 1
 
         # Orange
@@ -106,7 +139,10 @@ def saveColors(cube, positions, clusters, orientation):
         for facelet in clusters[2]:
             x = positions[4][i]
             y = 2 - positions[5][i]
-            cube[1][x][y] = facelet[4]
+            if cube[1][x][y] == None:
+                cube[1][x][y] = [facelet[4]]
+            else:
+                cube[1][x][y].append(facelet[4])
             i += 1
 
 ##########################
@@ -118,7 +154,10 @@ def saveColors(cube, positions, clusters, orientation):
         for facelet in clusters[0]:
             x = 2 - positions[1][i]
             y = 2 - positions[0][i]
-            cube[5][x][y] = facelet[4]
+            if cube[5][x][y] == None:
+                cube[5][x][y] = [facelet[4]]
+            else:
+                cube[5][x][y].append(facelet[4])
             i += 1
 
         # Red
@@ -126,7 +165,10 @@ def saveColors(cube, positions, clusters, orientation):
         for facelet in clusters[1]:
             x = 2 - positions[2][i]
             y = 2 - positions[3][i]
-            cube[3][x][y] = facelet[4]
+            if cube[3][x][y] == None:
+                cube[3][x][y] = [facelet[4]]
+            else:
+                cube[3][x][y].append(facelet[4])
             i += 1
 
         # Blue
@@ -134,7 +176,10 @@ def saveColors(cube, positions, clusters, orientation):
         for facelet in clusters[2]:
             x = 2 - positions[4][i]
             y = positions[5][i]
-            cube[4][x][y] = facelet[4]
+            if cube[4][x][y] == None:
+                cube[4][x][y] = [facelet[4]]
+            else:
+                cube[4][x][y].append(facelet[4])
             i += 1
 
 ##########################
@@ -146,7 +191,10 @@ def saveColors(cube, positions, clusters, orientation):
         for facelet in clusters[0]:
             x = positions[0][i]
             y = 2 - positions[1][i]
-            cube[5][x][y] = facelet[4]
+            if cube[5][x][y] == None:
+                cube[5][x][y] = [facelet[4]]
+            else:
+                cube[5][x][y].append(facelet[4])
             i += 1
 
         # Green
@@ -154,7 +202,10 @@ def saveColors(cube, positions, clusters, orientation):
         for facelet in clusters[1]:
             x = 2 - positions[2][i]
             y = 2 - positions[3][i]
-            cube[2][x][y] = facelet[4]
+            if cube[2][x][y] == None:
+                cube[2][x][y] = [facelet[4]]
+            else:
+                cube[2][x][y].append(facelet[4])
             i += 1
 
         # Red
@@ -162,7 +213,10 @@ def saveColors(cube, positions, clusters, orientation):
         for facelet in clusters[2]:
             x = 2 - positions[4][i]
             y = positions[5][i]
-            cube[3][x][y] = facelet[4]
+            if cube[3][x][y] == None:
+                cube[3][x][y] = [facelet[4]]
+            else:
+                cube[3][x][y].append(facelet[4])
             i += 1
 
 ##########################
@@ -174,7 +228,10 @@ def saveColors(cube, positions, clusters, orientation):
         for facelet in clusters[0]:
             x = positions[1][i]
             y = positions[0][i]
-            cube[5][x][y] = facelet[4]
+            if cube[5][x][y] == None:
+                cube[5][x][y] = [facelet[4]]
+            else:
+                cube[5][x][y].append(facelet[4])
             i += 1
 
         # Orange
@@ -182,7 +239,10 @@ def saveColors(cube, positions, clusters, orientation):
         for facelet in clusters[1]:
             x = 2 - positions[2][i]
             y = 2 - positions[3][i]
-            cube[1][x][y] = facelet[4]
+            if cube[1][x][y] == None:
+                cube[1][x][y] = [facelet[4]]
+            else:
+                cube[1][x][y].append(facelet[4])
             i += 1
 
         # Green
@@ -190,7 +250,10 @@ def saveColors(cube, positions, clusters, orientation):
         for facelet in clusters[2]:
             x = 2 - positions[4][i]
             y = positions[5][i]
-            cube[2][x][y] = facelet[4]
+            if cube[2][x][y] == None:
+                cube[2][x][y] = [facelet[4]]
+            else:
+                cube[2][x][y].append(facelet[4])
             i += 1
 
 ##########################
@@ -202,7 +265,10 @@ def saveColors(cube, positions, clusters, orientation):
         for facelet in clusters[0]:
             x = 2 - positions[0][i]
             y = positions[1][i]
-            cube[5][x][y] = facelet[4]
+            if cube[5][x][y] == None:
+                cube[5][x][y] = [facelet[4]]
+            else:
+                cube[5][x][y].append(facelet[4])
             i += 1
 
         # Blue
@@ -210,7 +276,10 @@ def saveColors(cube, positions, clusters, orientation):
         for facelet in clusters[1]:
             x = 2 - positions[2][i]
             y = 2 - positions[3][i]
-            cube[4][x][y] = facelet[4]
+            if cube[4][x][y] == None:
+                cube[4][x][y] = [facelet[4]]
+            else:
+                cube[4][x][y].append(facelet[4])
             i += 1
 
         # Orange
@@ -218,5 +287,8 @@ def saveColors(cube, positions, clusters, orientation):
         for facelet in clusters[2]:
             x = 2 - positions[4][i]
             y = positions[5][i]
-            cube[1][x][y] = facelet[4]
+            if cube[1][x][y] == None:
+                cube[1][x][y] = [facelet[4]]
+            else:
+                cube[1][x][y].append(facelet[4])
             i += 1

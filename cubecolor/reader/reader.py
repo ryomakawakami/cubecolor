@@ -2,13 +2,13 @@ import cv2
 import numpy as np
 from scipy.spatial import ConvexHull
 
-from cubecolor.filter_image import filterImage
-from cubecolor.get_facelets import getFacelets
-from cubecolor.cluster_facelets import clusterFacelets
-from cubecolor.filter_clusters import filterClusters
-from cubecolor.identify_color import identifyColor
-from cubecolor.perp_bisector import clusterWithBisector
-from cubecolor.save_colors import saveColors
+from cubecolor.reader.filter_image import filterImage
+from cubecolor.reader.get_facelets import getFacelets
+from cubecolor.reader.cluster_facelets import clusterFacelets
+from cubecolor.reader.filter_clusters import filterClusters
+from cubecolor.reader.identify_color import identifyColor
+from cubecolor.reader.perp_bisector import clusterWithBisector
+from cubecolor.reader.save_colors import saveColors
 
 def reader(cube, inPath):
     image = cv2.imread(inPath, -1)
@@ -21,6 +21,8 @@ def reader(cube, inPath):
 
     # Cluster facelets based on angle
     clusters = clusterFacelets(facelets)
+    if clusters == None:
+        return 'E'
 
     # Filter the 3 clusters to 9 facelets each
     filterClusters(clusters)
