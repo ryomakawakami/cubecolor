@@ -6,10 +6,8 @@ def clusterFacelets(facelets):
         cluster_indices, _ = vq([facelet[2] for facelet in facelets], codebook)
 
         clusters = [[], [], []]
-        i = 0
-        for facelet in facelets:
+        for i, facelet in enumerate(facelets):
             clusters[cluster_indices[i]].append(facelet)
-            i += 1
 
         return clusters
     except:

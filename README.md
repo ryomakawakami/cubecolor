@@ -26,9 +26,9 @@ OGRB   1234
 
 Todo:
 
-Fix for loop counters. Use enumerate().
-
 Maybe approach differently. Find hexagon using the maximize solidity method?
+
+Organize reader files better.
 
 Fix 0 vs 180 degree clustering for sideways cube (low priority).
 

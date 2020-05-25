@@ -28,10 +28,8 @@ def reader(cube, inPath):
     filterClusters(clusters)
 
     # Label colors
-    i = 0
-    for cluster in clusters:
-        j = 0
-        for facelet in cluster:
+    for i, cluster in enumerate(clusters):
+        for j, facelet in enumerate(cluster):
             hull = cv2.convexHull(facelet[0])
             mask = np.zeros(image.shape, np.uint8)
             cv2.fillConvexPoly(mask, hull, (255, 255, 255))
@@ -39,9 +37,6 @@ def reader(cube, inPath):
             
             color = identifyColor(masked)
             clusters[i][j].append(color)
-
-            j += 1
-        i += 1
 
     # Find center pieces
     centers = []
@@ -69,13 +64,11 @@ def reader(cube, inPath):
     hull = ConvexHull([center[3] for center in centers])
     centers = [centers[i] for i in hull.vertices]
     clusters = [clusters[i] for i in hull.vertices]
-    i = 0
     whiteYellowIndex = 0
-    for center in centers:
+    for i, center in enumerate(centers):
         if center[4] == 'w' or center[4] == 'y':
             whiteYellowIndex = i
             break
-        i += 1
     # Roll array so that first is x, second is y, third is z
     if whiteYellowIndex == 1:
         centers = [centers[i] for i in [1, 2, 0]]

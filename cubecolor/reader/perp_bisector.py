@@ -27,11 +27,9 @@ def clusterWithBisector(c0, c1, face):
 
     # Determine each distance
     arr = np.empty(9)
-    i = 0
-    for facelet in face:
+    for i, facelet in enumerate(face):
         point = np.asarray(facelet[3])
         arr[i] = np.linalg.norm(np.cross(b1 - b0, b0 - point)) / np.linalg.norm(b1 - b0)
-        i += 1
 
     # Cluster by distance
     arr = np.argsort(np.argsort(arr))   # This gives the index that each element "goes to"
